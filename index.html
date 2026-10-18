@@ -113,17 +113,43 @@ async function explainTutorQuestion(){
  var input=document.getElementById("tutorQuestion"),q=(input.value||"").trim(),g=document.getElementById("tutorGrade").value;
  if(!q)return;
  addTutorBubble(q,"user");input.value="";
- var pending=document.createElement("div");pending.className="tutor-bubble tutor-bot";pending.textContent="Gia sư đang suy nghĩ, bạn chờ một chút nhé…";
+ var pending=document.createElement("div");pending.className="tutor-bubble tutor-bot";pending.textContent="Gia sư đang đọc câu hỏi…";
  var box=document.getElementById("tutorChatMessages");box.appendChild(pending);box.scrollTop=box.scrollHeight;
  try{
   var response=await fetch("/api/tutor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({grade:g,message:q})});
+  if(!response.ok)throw new Error("API chưa sẵn sàng");
   var data=await response.json();
-  if(!response.ok)throw new Error(data.error||"Không thể kết nối gia sư AI.");
-  pending.textContent=data.answer||"Gia sư chưa tạo được câu trả lời. Bạn thử gửi lại nhé.";
+  if(!data.answer)throw new Error("Chưa có câu trả lời");
+  pending.textContent=data.answer;
  }catch(err){
-  pending.textContent="Gia sư AI chưa được kết nối trên máy chủ. Để trả lời đa dạng mọi dạng toán, website cần được triển khai với API AI và cấu hình OPENAI_API_KEY an toàn ở máy chủ. Không nhập khóa API vào khung chat. Hiện website GitHub Pages chưa chạy được API /api/tutor.";
+  pending.textContent=offlineMathTutor(q,g);
  }
  box.scrollTop=box.scrollHeight;
+}
+function offlineMathTutor(q,g){
+ var text=q.toLowerCase().replace(/−/g,"-").replace(/×/g,"*").replace(/÷/g,"/").replace(/,/g,".");
+ if(/^(xin chào|chào|hello|hi\b)/i.test(text))return "Chào bạn! 😊 Mình đang ở chế độ gia sư cơ bản. Bạn gửi phép tính, phương trình hoặc câu hỏi Toán cụ thể nhé.";
+ if(/(giải thích kỹ hơn|nói rõ hơn|chưa hiểu|không hiểu|giải lại)/i.test(text))return "Được nhé! 😊 Bạn gửi lại dòng hoặc bước mà bạn chưa hiểu, mình sẽ thử diễn giải bằng cách đơn giản hơn. Hiện máy chủ AI chưa kết nối nên mình chỉ xử lý được một số dạng toán cơ bản.";
+ if(/(cảm ơn|cam on|thanks)/i.test(text))return "Không có gì nhé! Bạn cứ gửi bài tiếp theo. 🌟";
+ var natural=text.match(/(-?\d+(?:\.\d+)?)\s*(?:cộng|\+|thêm)\s*(-?\d+(?:\.\d+)?)/);
+ if(natural){var n1=Number(natural[1]),n2=Number(natural[2]);return "Ta tính phép cộng: "+n1+" + "+n2+" = "+(n1+n2)+".\nCách làm: bắt đầu từ "+n1+", cộng thêm "+n2+" đơn vị, ta được "+(n1+n2)+".\nĐáp án: "+(n1+n2)+".";}
+ natural=text.match(/(-?\d+(?:\.\d+)?)\s*(?:trừ|-)\s*(-?\d+(?:\.\d+)?)/);
+ if(natural){var n1=Number(natural[1]),n2=Number(natural[2]);return "Ta tính phép trừ: "+n1+" − "+n2+" = "+(n1-n2)+".\nĐáp án: "+(n1-n2)+".";}
+ natural=text.match(/(-?\d+(?:\.\d+)?)\s*(?:nhân|\*|x)\s*(-?\d+(?:\.\d+)?)/);
+ if(natural){var n1=Number(natural[1]),n2=Number(natural[2]);return "Ta tính phép nhân: "+n1+" × "+n2+" = "+(n1*n2)+".\nPhép nhân có thể hiểu là cộng lặp lại các nhóm bằng nhau.\nĐáp án: "+(n1*n2)+".";}
+ natural=text.match(/(-?\d+(?:\.\d+)?)\s*(?:chia|\/|:)\s*(-?\d+(?:\.\d+)?)/);
+ if(natural){var n1=Number(natural[1]),n2=Number(natural[2]);if(n2===0)return "Không thể chia cho 0. Bạn kiểm tra lại đề bài nhé.";var val=n1/n2;return "Ta tính phép chia: "+n1+" ÷ "+n2+" = "+(Number.isInteger(val)?val:Number(val.toFixed(8)))+".\nĐáp án: "+(Number.isInteger(val)?val:Number(val.toFixed(8)))+".";}
+ var eq=text.match(/^\s*(-?\d*)\s*x\s*([+-])\s*(\d+(?:\.\d+)?)\s*=\s*(-?\d+(?:\.\d+)?)\s*$/i);
+ if(eq){var a=eq[1]===""||eq[1]==="+"?1:eq[1]==="-"?-1:Number(eq[1]),b=(eq[2]==="+"?1:-1)*Number(eq[3]),c=Number(eq[4]);if(a===0)return "Hệ số của x bằng 0 nên cần xét riêng. Bạn gửi lại phương trình nhé.";var x=(c-b)/a;return "Giải phương trình từng bước:\n1. "+a+"x "+(b<0?"− "+Math.abs(b):"+ "+b)+" = "+c+".\n2. Chuyển số hạng tự do: "+a+"x = "+(c-b)+".\n3. Chia hai vế cho "+a+": x = "+(Number.isInteger(x)?x:Number(x.toFixed(6)))+".\nĐáp án: x = "+(Number.isInteger(x)?x:Number(x.toFixed(6)))+".";}
+ if(/đạo hàm|dao ham/.test(text)){if(/x\s*\^?\s*3|x³/.test(text))return "Quy tắc lũy thừa: (xⁿ)' = n·xⁿ⁻¹. Vì vậy (x³)' = 3x². Ví dụ (x³ + 2x)' = 3x² + 2. Nếu biểu thức của bạn khác, hãy gửi đầy đủ biểu thức nhé.";return "Quy tắc cơ bản: (xⁿ)' = n·xⁿ⁻¹, (c)' = 0, (af+bg)' = af' + bg'. Ví dụ (3x²)' = 6x. Gửi đầy đủ biểu thức để mình hướng dẫn tiếp.";}
+ if(/nguyên hàm|nguyen ham/.test(text))return "Một số công thức cơ bản: ∫xⁿ dx = xⁿ⁺¹/(n+1) + C (với n ≠ −1); ∫1/x dx = ln|x| + C; ∫k dx = kx + C. Bạn gửi hàm số cụ thể để mình áp dụng từng bước.";
+ if(/tích phân|tich phan/.test(text))return "Tích phân xác định ∫ₐᵇ f(x)dx được tính bằng F(b) − F(a), trong đó F'(x)=f(x). Bạn gửi biểu thức và cận tích phân để mình hướng dẫn cụ thể.";
+ if(/pythagore|pitago/.test(text))return "Định lý Pythagore: trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông: c² = a² + b². Ví dụ hai cạnh góc vuông 3 và 4 thì cạnh huyền c = √(3²+4²)=5.";
+ if(/diện tích hình tròn|dien tich hinh tron/.test(text))return "Diện tích hình tròn: S = πr², trong đó r là bán kính. Chu vi: C = 2πr. Bạn cho mình biết bán kính hoặc đường kính để tính số cụ thể nhé.";
+ if(/chu vi hình chữ nhật|dien tich hinh chu nhat|diện tích hình chữ nhật/.test(text))return "Hình chữ nhật có chu vi P = 2(a+b) và diện tích S = a·b, trong đó a là chiều dài, b là chiều rộng. Gửi số đo để mình tính giúp nhé.";
+ if(/phân số|phan so/.test(text))return "Cộng/trừ phân số khác mẫu: quy đồng mẫu số, thực hiện phép tính ở tử rồi rút gọn. Ví dụ 1/2 + 1/3 = 3/6 + 2/6 = 5/6. Nhân phân số: nhân tử với tử, mẫu với mẫu. Chia phân số: nhân với phân số nghịch đảo.";
+ if(/sin\s*30/.test(text))return "Góc đặc biệt: sin 30° = 1/2, cos 30° = √3/2, tan 30° = √3/3.";
+ return "Mình đã nhận câu hỏi Toán lớp "+g+" của bạn. Tuy nhiên, máy chủ AI chưa được kết nối nên hiện mình chưa thể tự phân tích mọi dạng bài. Mình vẫn hỗ trợ được một số phép tính, phương trình bậc nhất và công thức cơ bản. Với câu hỏi phức tạp, hãy gửi đầy đủ đề bài; để gia sư trả lời linh hoạt mọi chủ đề, chủ website cần triển khai API AI trên máy chủ bảo mật.";
 }
 function escapeTutorText(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
 function addTutorBubble(text,type,isHtml){
