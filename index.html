@@ -116,13 +116,15 @@ async function explainTutorQuestion(){
  var pending=document.createElement("div");pending.className="tutor-bubble tutor-bot";pending.textContent="Gia sư đang đọc câu hỏi…";
  var box=document.getElementById("tutorChatMessages");box.appendChild(pending);box.scrollTop=box.scrollHeight;
  try{
-  var response=await fetch("/api/tutor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({grade:g,message:q})});
+  var apiUrl=(window.TUTOR_API_URL||"").trim() || "/api/tutor";
+  var response=await fetch(apiUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({grade:g,message:q})});
   if(!response.ok)throw new Error("API chưa sẵn sàng");
   var data=await response.json();
   if(!data.answer)throw new Error("Chưa có câu trả lời");
   pending.textContent=data.answer;
  }catch(err){
   pending.textContent=offlineMathTutor(q,g);
+  if(window.TUTOR_API_URL && String(window.TUTOR_API_URL).trim()) pending.textContent += "\\n\\nLưu ý: chưa kết nối được máy chủ AI. Hãy kiểm tra địa chỉ API và biến OPENAI_API_KEY trên máy chủ.";
  }
  box.scrollTop=box.scrollHeight;
 }
