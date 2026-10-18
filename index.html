@@ -83,6 +83,32 @@ function chooseAnswer(btn){var key=btn.dataset.grade+"-"+btn.dataset.topic+"-"+b
 function submitQuiz(g,i){var t=data[g][i],score=0,answered=0;for(var j=0;j<t[2].length;j++){var key=g+"-"+i+"-"+j,ans=window.quizAnswers&&window.quizAnswers[key],q=t[2][j],fb=document.getElementById("fb-"+j);if(ans)answered++;if(ans===q[1]){score+=2;fb.textContent="✓ Chính xác";fb.style.color="#0f9f6e"}else{fb.textContent="Đáp án: "+q[1];fb.style.color="#d9485f"}}var result=document.getElementById("quizResult");if(answered<5){result.style.color="#d97706";result.textContent="Bạn đã trả lời "+answered+"/5 câu. Điểm hiện tại: "+score+"/10. Bạn có thể chọn đáp án còn thiếu rồi nộp lại.";return}result.style.color="#5145e5";result.textContent="🎉 Kết quả: "+score+"/10 điểm!";var key2=g+"-"+i;if(!progress[key2]){progress[key2]=true;save()}var award="mathQuizAward-"+g+"-"+i;if(!sessionStorage.getItem(award)){points+=score;sessionStorage.setItem(award,"1");save()}render()}
 function quickQuiz(){openGrade(8);lesson(8,0)}function closeModal(){document.getElementById("backdrop").classList.remove("show")}document.getElementById("search").addEventListener("input",render);document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});render();stats();
 </script>
+<script>
+/* Bản khôi phục độc lập: luôn hiển thị đủ 12 lớp ngay cả khi script bài tập gặp lỗi. */
+(function(){
+ var items=[
+ ["🔢","Làm quen với số và phép tính"],["➕","Cộng, trừ và bảng nhân"],["✖️","Nhân chia và phân số"],["📏","Số tự nhiên và đo lường"],
+ ["📐","Số thập phân và phần trăm"],["🧩","Số nguyên và hình học"],["📊","Số hữu tỉ và đại số"],["📈","Phương trình và hình học"],
+ ["📘","Hàm số và hệ phương trình"],["🧮","Hàm số và xác suất"],["📉","Lượng giác và dãy số"],["🎓","Ôn tập Toán lớp 12"]
+ ];
+ function showCards(){
+  var grid=document.getElementById("grid"); if(!grid)return;
+  if(grid.children.length===12)return;
+  grid.innerHTML="";
+  items.forEach(function(it,index){
+   var g=index+1, card=document.createElement("article"); card.className="card";
+   card.innerHTML='<div class="cardtop"><span class="icon">'+it[0]+'</span> <small>KHỐI '+String(g).padStart(2,"0")+'</small></div><h3>Toán lớp '+g+'</h3><p>'+it[1]+'</p><button type="button">Mở lớp '+g+' →</button>';
+   card.querySelector("button").addEventListener("click",function(){
+    var back=document.getElementById("backdrop"),body=document.getElementById("modalBody");
+    if(body&&back){body.innerHTML='<h2>'+it[0]+' Toán lớp '+g+'</h2><p>'+it[1]+'</p><p>Đã khôi phục thẻ lớp học. Nếu phần bài tập chưa mở được, cần sửa tiếp lỗi JavaScript trong bộ câu hỏi.</p>';back.classList.add("show");}
+   });
+   grid.appendChild(card);
+  });
+  var empty=document.getElementById("empty");if(empty)empty.style.display="none";
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",showCards);else showCards();
+})();
+</script>
 <div class="backdrop" id="authBackdrop" onclick="if(event.target===this)closeAuth()"><div class="modal">
 <button onclick="closeAuth()" style="float:right">✕ Đóng</button><div id="authContent"></div>
 </div></div>
