@@ -43,40 +43,40 @@ var e=id("empty");if(e)e.style.display=count?"none":"block";}
 function openGrade(g){var b=id("modalBody"),back=id("backdrop");if(!b||!back)return;b.innerHTML="<h2>"+icons[g-1]+" Toán lớp "+g+"</h2><p>"+desc[g-1]+"</p><p>Chọn chủ đề để làm bài trắc nghiệm. Mỗi chủ đề có 5 câu, mỗi câu đúng được 2 điểm.</p>";
 topics[g-1].forEach(function(t,i){var a=document.createElement("article");a.className="lesson";a.innerHTML="<h3>"+(i+1)+". "+t+"</h3><p>"+(progress[g+"-"+i]?"✅ Đã hoàn thành":"Lý thuyết, ví dụ và bài luyện tập")+"</p><button type='button'>Học bài →</button>";a.querySelector("button").onclick=function(){lessonView(g,i);};b.appendChild(a);});back.classList.add("show");}
 function lessonView(g,i){
-var b=id("modalBody"),topic=topics[g-1][i],category=i%2;
-var theory=[
-["Số tự nhiên dùng để đếm. Phép cộng gộp các nhóm; phép trừ tìm phần còn lại.","Nhận biết hình tam giác, hình vuông, hình chữ nhật và hình tròn."],
-["Đặt tính thẳng hàng theo hàng đơn vị, chục, trăm. Thực hiện cộng, trừ từ phải sang trái.","Đổi đơn vị đo độ dài: 1 m = 100 cm; 1 km = 1000 m."],
-["Khi nhân, có thể hiểu là cộng các số hạng bằng nhau. Phép chia là chia đều hoặc tìm số nhóm.","Phân số có tử số ở trên, mẫu số ở dưới. Phân số chỉ các phần bằng nhau của một đơn vị."],
-["Số tự nhiên có thể so sánh theo số chữ số rồi đến từng hàng. Khi tính cần đặt các hàng thẳng cột.","Cộng phân số cùng mẫu: cộng tử số và giữ nguyên mẫu số. Đổi đơn vị trước khi tính nếu cần."],
-["Số thập phân dùng dấu phẩy để phân cách phần nguyên và phần thập phân. Khi cộng trừ, đặt dấu phẩy thẳng cột.","Tỉ số phần trăm cho biết số phần trên 100. Muốn tìm p% của A, tính A × p/100."],
-["Số nguyên gồm số nguyên âm, số 0 và số nguyên dương. Trên trục số, số bên phải lớn hơn số bên trái.","Muốn cộng phân số khác mẫu, quy đồng mẫu rồi cộng tử. Tổng ba góc trong tam giác bằng 180°."],
-["Số hữu tỉ viết được dưới dạng a/b với b khác 0. Lũy thừa là phép nhân lặp lại cùng một thừa số.","Thay giá trị biến vào biểu thức rồi thực hiện phép tính theo thứ tự: ngoặc, lũy thừa, nhân chia, cộng trừ."],
-["Giải phương trình bằng cách biến đổi hai vế tương đương để đưa ẩn về một phía. Làm cùng một phép biến đổi ở hai vế.","Định lý Pythagore: trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông."],
-["Hàm số mô tả sự phụ thuộc giữa hai đại lượng. Phương trình bậc hai có dạng ax²+bx+c=0 với a khác 0.","Xác suất của biến cố bằng số kết quả thuận lợi chia cho tổng số kết quả đồng khả năng."],
-["Hàm số bậc hai có dạng y=ax²+bx+c với a khác 0; đồ thị là một parabol. Vectơ có hướng và độ dài.","Quy tắc nhân: nếu việc thứ nhất có m cách, việc thứ hai có n cách thì hai việc liên tiếp có m×n cách."],
-["Trong tam giác vuông, sin = đối/huyền và cos = kề/huyền. Cấp số cộng có hiệu hai số hạng liên tiếp không đổi.","Giới hạn mô tả giá trị mà dãy số hoặc hàm số tiến gần đến. Cần dùng đúng quy tắc giới hạn đã học."],
-["Đạo hàm biểu thị tốc độ thay đổi tức thời. Quy tắc cơ bản: (xⁿ)' = n·xⁿ⁻¹.","Nguyên hàm F của f thỏa F'=f. Tích phân xác định có thể tính bằng F(b)−F(a). Số phức có dạng a+bi, i²=−1."]
-];
-var examples=[
-["Ví dụ: 2 + 3 = 5. Ví dụ hình học: hình tam giác có 3 cạnh."],
-["Ví dụ: 26 + 13 = 39. Đổi đơn vị: 2 m = 200 cm."],
-["Ví dụ: 7 × 8 = 56. Một nửa được viết là 1/2."],
-["Ví dụ: 1/4 + 2/4 = 3/4. Ví dụ: 1 km = 1000 m."],
-["Ví dụ: 25% của 200 = 200 × 25/100 = 50."],
-["Ví dụ: −3 + 8 = 5. Tam giác có tổng ba góc bằng 180°."],
-["Ví dụ: nếu x=3 thì 2x+1 = 2×3+1 = 7."],
-["Ví dụ: 2x+4=10 ⇒ 2x=6 ⇒ x=3."],
-["Ví dụ: 2x−6=0 ⇒ x=3. Đồng xu cân đối có xác suất mặt ngửa là 1/2."],
-["Ví dụ: f(x)=3x thì f(2)=6. Có 3 áo và 2 quần thì có 3×2=6 bộ."],
-["Ví dụ: sin 30° = 1/2. Dãy 2, 5, 8 là cấp số cộng có công sai 3."],
-["Ví dụ: (3x²)' = 6x. Một nguyên hàm của 2x là x²+C."]
-];
-b.innerHTML='<button type="button" id="backLessons">← Danh sách chủ đề</button><h2>📘 Lý thuyết: '+topic+'</h2><p><b>Kiến thức trọng tâm</b></p><article class="lesson"><p>'+theory[g-1][category]+'</p></article><p><b>Ví dụ minh họa</b></p><article class="lesson"><p>'+examples[g-1][category]+'</p></article><p><b>Mục tiêu bài học</b></p><p>Đọc lý thuyết, xem ví dụ, sau đó làm 5 câu thực hành trắc nghiệm. Mỗi câu đúng được 2 điểm.</p><button class="btn" type="button" id="startPractice">Bắt đầu thực hành →</button>';
-id("backLessons").onclick=function(){openGrade(g);};
-id("startPractice").onclick=function(){practice(g,i);};
+ var b=id("modalBody"),topic=topics[g-1][i],content=getLessonTheory(g,i,topic);
+ b.innerHTML='<button type="button" id="backLessons">← Danh sách chủ đề</button><h2>📘 Lý thuyết: '+topic+'</h2><p><b>Kiến thức trọng tâm</b></p><article class="lesson"><p id="lessonTheoryText"></p></article><p><b>Ví dụ minh họa</b></p><article class="lesson"><p id="lessonExampleText"></p></article><p><b>Mục tiêu bài học</b></p><p>Hiểu kiến thức trọng tâm, tự làm ví dụ tương tự, sau đó luyện tập. Bộ câu hỏi hiện có thể chưa bao phủ đầy đủ nội dung của chủ đề.</p><button class="btn" type="button" id="startPractice">Bắt đầu thực hành →</button>';
+ id("lessonTheoryText").textContent=content[0];id("lessonExampleText").textContent=content[1];
+ id("backLessons").onclick=function(){openGrade(g);};
+ id("startPractice").onclick=function(){practice(g,i);};
 }
-function practice(g,i){var b=id("modalBody"),qs=(i%2===0?bank[g-1]:bankSecond[g-1]),answers={},submitted=false;b.innerHTML='<button type="button" id="backTheory">← Quay lại lý thuyết</button><h2>✍️ Thực hành: '+topics[g-1][i]+'</h2><p>Chọn một đáp án cho từng câu rồi nhấn Nộp bài.</p><div id="quizItems"></div><button class="btn" type="button" id="submitMath">Nộp bài và xem điểm</button><p id="quizScore" class="feedback"></p>';id("backTheory").onclick=function(){lessonView(g,i);};var list=id("quizItems");
+function getLessonTheory(g,i,t){
+ var title=t.toLowerCase(),maps=[
+ [/đếm|đọc và viết số|số đến|số tự nhiên|tập hợp/,"Số và tập hợp giúp biểu diễn số lượng, thứ tự và quan hệ giữa các đối tượng. Khi đọc, viết hoặc so sánh số, cần chú ý giá trị từng hàng và điều kiện của tập số đang xét.","Ví dụ: 3 205 = 3 000 + 200 + 5."],
+ [/so sánh|sắp xếp/,"So sánh các số theo quy tắc của tập số đang học; sắp xếp theo thứ tự tăng dần hoặc giảm dần.","Ví dụ: 208 < 280 vì hàng trăm bằng nhau nhưng 0 chục < 8 chục."],
+ [/cộng|phép tính|biểu thức số|thứ tự phép tính/,"Thực hiện phép tính theo đúng quy tắc. Với biểu thức có nhiều phép toán, tính trong ngoặc trước, rồi lũy thừa, nhân chia, cuối cùng cộng trừ.","Ví dụ: 3 + 4 × 2 = 3 + 8 = 11."],
+ [/trừ|số nguyên|số hữu tỉ/,"Khi cộng hoặc trừ số có dấu, cần xét dấu và giá trị tuyệt đối; trên trục số, số ở bên phải lớn hơn số ở bên trái.","Ví dụ: −3 + 8 = 5."],
+ [/nhân|bảng nhân/,"Phép nhân là phép cộng lặp lại các số hạng bằng nhau; dùng tính chất giao hoán, kết hợp và phân phối khi phù hợp.","Ví dụ: 7 × 8 = 56."],
+ [/chia|chia hết|ước|bội|số nguyên tố/,"Phép chia liên hệ với phép nhân. Khi xét chia hết, dùng các dấu hiệu chia hết và phân tích số thành thừa số khi cần.","Ví dụ: 24 : 6 = 4 vì 4 × 6 = 24."],
+ [/phân số|hỗn số/,"Phân số a/b có mẫu số b khác 0. Cộng trừ phân số khác mẫu cần quy đồng; nhân phân số bằng nhân tử với tử, mẫu với mẫu; chia bằng nhân với phân số nghịch đảo.","Ví dụ: 1/2 + 1/3 = 3/6 + 2/6 = 5/6."],
+ [/thập phân|phần trăm|tỉ số/,"Số thập phân biểu diễn phần nguyên và phần thập phân. Tỉ số phần trăm p% bằng p/100; muốn tìm p% của A, tính A × p/100.","Ví dụ: 25% của 200 = 200 × 25/100 = 50."],
+ [/đại số|biểu thức chứa chữ|đa thức|hằng đẳng thức|phân tích đa thức|phân thức/,"Biểu thức đại số dùng chữ để biểu diễn số. Thu gọn hạng tử đồng dạng; khi biến đổi, áp dụng tính chất phân phối và hằng đẳng thức, đồng thời giữ điều kiện xác định.","Ví dụ: 3x + 2x − 1 = 5x − 1."],
+ [/phương trình|hệ phương trình|bất phương trình/,"Biến đổi hai vế bằng các phép biến đổi tương đương để tìm ẩn. Với phương trình có mẫu, căn hoặc phép biến đổi có điều kiện, cần xét điều kiện và thử lại nghiệm.","Ví dụ: 2x + 4 = 10 ⇒ 2x = 6 ⇒ x = 3."],
+ [/căn bậc|số thực/,"Căn bậc hai số học √a là số không âm có bình phương bằng a (với a ≥ 0). Khi có biến dưới dấu căn, cần xét điều kiện để biểu thức có nghĩa.","Ví dụ: √49 = 7."],
+ [/hàm số|đồ thị/,"Hàm số y=f(x) gán mỗi giá trị x trong tập xác định với một giá trị y. Đồ thị gồm các điểm có tọa độ (x; f(x)).","Ví dụ: f(x)=2x+1 thì f(3)=7."],
+ [/hàm số bậc hai|parabol/,"Hàm số bậc hai có dạng y=ax²+bx+c với a≠0; đồ thị là parabol. Trục đối xứng có phương trình x=−b/(2a).","Ví dụ: y=x² có đỉnh (0;0) và trục đối xứng là Oy."],
+ [/vectơ/,"Vectơ có hướng và độ dài. Tọa độ vectơ AB bằng tọa độ điểm B trừ tọa độ điểm A theo từng thành phần.","Ví dụ: A(1;2), B(4;6) thì vectơ AB=(3;4)."],
+ [/lượng giác|sin|cos|tam giác vuông|hệ thức lượng/,"Trong tam giác vuông, sin góc nhọn = cạnh đối/cạnh huyền, cos = cạnh kề/cạnh huyền, tan = cạnh đối/cạnh kề. Chọn đúng góc và cạnh trước khi thay số.","Ví dụ: tam giác vuông có cạnh đối 3, cạnh huyền 5 thì sin góc đó = 3/5."],
+ [/đạo hàm|cực trị|giá trị lớn nhất|giá trị nhỏ nhất|đơn điệu/,"Đạo hàm f'(x) giúp xét chiều biến thiên và cực trị. Quy tắc cơ bản: (xⁿ)'=n·xⁿ⁻¹; cần áp dụng quy tắc phù hợp với biểu thức.","Ví dụ: (x³+2x)'=3x²+2."],
+ [/nguyên hàm|tích phân/,"F là nguyên hàm của f nếu F'=f. Nếu F'=f trên đoạn đang xét thì ∫ₐᵇ f(x)dx=F(b)−F(a).","Ví dụ: ∫₀¹2x dx = [x²]₀¹ = 1."],
+ [/giới hạn|liên tục|dãy số|cấp số/,"Dãy số là một hàm xác định trên các số nguyên dương. Cấp số cộng có công sai không đổi; giới hạn mô tả giá trị mà dãy hoặc hàm tiến gần đến.","Ví dụ: dãy 2, 5, 8,... là cấp số cộng có công sai 3."],
+ [/xác suất|quy tắc đếm|nhị thức/,"Khi các kết quả sơ cấp đồng khả năng, P(A)=số kết quả thuận lợi/tổng số kết quả. Quy tắc nhân dùng cho các công đoạn liên tiếp.","Ví dụ: xúc xắc cân đối có xác suất ra số chẵn là 3/6=1/2."],
+ [/thống kê|dữ liệu|số liệu/,"Dữ liệu cần được thu thập, sắp xếp và biểu diễn bằng bảng hoặc biểu đồ. Số trung bình cộng bằng tổng các giá trị chia cho số quan sát.","Ví dụ: trung bình của 2, 4, 6 là (2+4+6)/3=4."],
+ [/hình|góc|đường thẳng|đoạn thẳng|tia|chu vi|diện tích|thể tích|đường tròn|tứ giác|tam giác|pythagore|hình học|khối|đo lường|độ dài|đơn vị|chuyển động|thời gian|tiền việt nam/,"Với bài hình học hoặc đo lường, xác định hình và dữ kiện đã cho, chọn đúng định nghĩa hoặc công thức, thống nhất đơn vị rồi thay số. Hình vẽ giúp minh họa nhưng không thay cho lập luận.","Ví dụ: hình chữ nhật dài 6 cm, rộng 3 cm có diện tích S=6×3=18 cm²."]
+ ];
+ for(var k=0;k<maps.length;k++){if(maps[k][0].test(title))return [maps[k][1],maps[k][2]];}
+ if(g<=2)return ["Đọc đề, xác định số lượng đã cho và điều cần tìm. Dùng hình vẽ hoặc đồ vật minh họa, thực hiện phép tính phù hợp rồi trả lời bằng câu đầy đủ.","Ví dụ: có 5 đồ vật, thêm 2 đồ vật thì có 5+2=7 đồ vật."];
+ return ["Đọc kỹ định nghĩa, điều kiện áp dụng và ký hiệu của chủ đề. Xác định dữ kiện, chọn quy tắc phù hợp, trình bày từng bước và kiểm tra kết quả.","Ví dụ: ghi rõ công thức trước, thay dữ kiện vào công thức rồi tính và kiểm tra đơn vị hoặc điều kiện nghiệm."];
+}function practice(g,i){var b=id("modalBody"),qs=(i%2===0?bank[g-1]:bankSecond[g-1]),answers={},submitted=false;b.innerHTML='<button type="button" id="backTheory">← Quay lại lý thuyết</button><h2>✍️ Thực hành: '+topics[g-1][i]+'</h2><p>Chọn một đáp án cho từng câu rồi nhấn Nộp bài.</p><div id="quizItems"></div><button class="btn" type="button" id="submitMath">Nộp bài và xem điểm</button><p id="quizScore" class="feedback"></p>';id("backTheory").onclick=function(){lessonView(g,i);};var list=id("quizItems");
 qs.forEach(function(q,j){var row=document.createElement("article");row.className="lesson";row.innerHTML="<h3>Câu "+(j+1)+": "+q[0]+"</h3><div class='options'></div><p class='feedback'></p>";var opts=row.querySelector(".options");q[2].forEach(function(ans){var btn=document.createElement("button");btn.type="button";btn.className="answer";btn.textContent=ans;btn.style.margin="4px";btn.onclick=function(){answers[j]=ans;opts.querySelectorAll("button").forEach(function(x){x.style.background="white";x.style.borderColor="#e7eaf2";});btn.style.background="#eeedff";btn.style.borderColor="#5145e5";};opts.appendChild(btn);});list.appendChild(row);});
 id("submitMath").onclick=function(){if(submitted)return;if(Object.keys(answers).length<5){id("quizScore").textContent="Bạn đã chọn "+Object.keys(answers).length+"/5 câu. Hãy chọn đáp án cho các câu còn lại.";return;}var score=0;qs.forEach(function(q,j){var fb=list.children[j].querySelector(".feedback");if(answers[j]===q[1]){score+=2;fb.textContent="✅ Chính xác!";fb.style.color="#0f9f6e";}else{fb.textContent="❌ Đáp án đúng: "+q[1];fb.style.color="#d9485f";}});submitted=true;id("submitMath").disabled=true;id("quizScore").textContent="🎉 Bạn được "+score+"/10 điểm!";if(!progress[g+"-"+i]){progress[g+"-"+i]=true;points+=score;}save();render();};
 }
