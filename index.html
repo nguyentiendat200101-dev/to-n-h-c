@@ -9,104 +9,26 @@
 <section class="section" id="khoi-lop"><div class="head"><div><h2>Chọn khối lớp của bạn</h2><p>Chọn lớp để xem chủ đề và bắt đầu luyện tập.</p></div><input id="search" placeholder="⌕ Tìm lớp học, ví dụ: lớp 8..." aria-label="Tìm lớp"></div><div class="grid" id="grid"><article class="card"><div class="cardtop"><span class="icon">🔢</span> <small>KHỐI 01</small></div><h3>Toán lớp 1</h3><p>Làm quen với số và phép tính.</p><button onclick="openGrade(1)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">➕</span> <small>KHỐI 02</small></div><h3>Toán lớp 2</h3><p>Củng cố phép tính và bảng nhân.</p><button onclick="openGrade(2)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">✖️</span> <small>KHỐI 03</small></div><h3>Toán lớp 3</h3><p>Rèn kỹ năng tính toán.</p><button onclick="openGrade(3)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">📏</span> <small>KHỐI 04</small></div><h3>Toán lớp 4</h3><p>Khám phá phân số và bài toán thực tế.</p><button onclick="openGrade(4)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">📐</span> <small>KHỐI 05</small></div><h3>Toán lớp 5</h3><p>Số thập phân và phần trăm.</p><button onclick="openGrade(5)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">🧩</span> <small>KHỐI 06</small></div><h3>Toán lớp 6</h3><p>Số nguyên và hình học.</p><button onclick="openGrade(6)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">📊</span> <small>KHỐI 07</small></div><h3>Toán lớp 7</h3><p>Số hữu tỉ và biểu thức đại số.</p><button onclick="openGrade(7)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">📈</span> <small>KHỐI 08</small></div><h3>Toán lớp 8</h3><p>Phương trình và hình học.</p><button onclick="openGrade(8)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">📘</span> <small>KHỐI 09</small></div><h3>Toán lớp 9</h3><p>Ôn tập nền tảng chuyển cấp.</p><button onclick="openGrade(9)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">🧮</span> <small>KHỐI 10</small></div><h3>Toán lớp 10</h3><p>Hàm số và xác suất.</p><button onclick="openGrade(10)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">📉</span> <small>KHỐI 11</small></div><h3>Toán lớp 11</h3><p>Lượng giác và dãy số.</p><button onclick="openGrade(11)">Học ngay →</button></article><article class="card"><div class="cardtop"><span class="icon">🎓</span> <small>KHỐI 12</small></div><h3>Toán lớp 12</h3><p>Ôn tập chuẩn bị kỳ thi tốt nghiệp.</p><button onclick="openGrade(12)">Học ngay →</button></article></div><p id="empty" style="display:none">Không tìm thấy lớp phù hợp.</p></section>
 <section class="features" id="tinh-nang"><div class="section"><div class="head"><div><h2>Học thông minh hơn</h2><p>Công cụ giúp việc ôn Toán dễ dàng và thú vị hơn.</p></div></div><div class="featuregrid"><article class="feature">📝<h3>Bài học dễ hiểu</h3><p>Mỗi chủ đề có kiến thức cốt lõi, ví dụ và câu hỏi tự kiểm tra.</p></article><article class="feature">⚡<h3>Luyện tập tức thì</h3><p>Trả lời câu hỏi và xem phản hồi ngay lập tức.</p></article><article class="feature">🏆<h3>Theo dõi tiến độ</h3><p>Bài đã hoàn thành và điểm được lưu tự động trên trình duyệt.</p></article></div></div></section><footer class="footer">© 2026 Toán Học · Học vui, hiểu sâu, tiến bộ mỗi ngày 💜</footer>
 <div class="backdrop" id="backdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><button onclick="closeModal()" style="float:right">✕ Đóng</button><div id="modalBody"></div></div></div>
+<script>/* Legacy script disabled because it contained a syntax error. */</script>
 <script>
-var data={
-1:[
-["Số và phép tính","Đếm số, cộng trừ trong phạm vi phù hợp.",[
-["2 + 3 = ?", "5",["4","5","6","7","8"]],["7 - 4 = ?","3",["2","3","4","5","6"]],["Số đứng sau 9 là số nào?","10",["8","9","10","11","12"]],["4 + 4 = ?","8",["6","7","8","9","10"]],["6 - 2 = ?","4",["2","3","4","5","6"]]]],
-["Hình học và so sánh","Nhận biết hình, so sánh số và vị trí.",[
-["Hình nào có 3 cạnh?","Tam giác",["Hình tròn","Hình vuông","Tam giác","Hình chữ nhật","Hình cầu"]],["Số nào lớn hơn 5?","7",["2","4","5","7","1"]],["Hình vuông có mấy cạnh?","4",["2","3","4","5","6"]],["Số nào bé nhất?","2",["8","6","2","9","5"]],["Có 3 quả táo, thêm 2 quả. Có tất cả?","5",["3","4","5","6","7"]]]],
-2:[
-["Cộng trừ và số tự nhiên","Cộng trừ số có hai chữ số.",[
-["26 + 13 = ?","39",["38","39","40","41","37"]],["45 - 20 = ?","25",["15","20","25","30","35"]],["35 + 8 = ?","43",["41","42","43","44","45"]],["60 - 17 = ?","43",["42","43","44","45","47"]],["Số liền trước 100 là?","99",["98","99","100","101","90"]]]],
-["Nhân chia và đo lường","Bảng nhân đơn giản, đơn vị đo quen thuộc.",[
-["3 × 4 = ?","12",["7","10","12","14","16"]],["10 : 2 = ?","5",["2","4","5","6","8"]],["1 mét bằng bao nhiêu xăng-ti-mét?","100",["10","50","100","1000","20"]],["2 × 5 = ?","10",["7","8","10","12","15"]],["Một tuần có bao nhiêu ngày?","7",["5","6","7","8","10"]]]],
-3:[
-["Nhân chia và số học","Luyện phép nhân, chia và tính toán.",[
-["7 × 8 = ?","56",["48","54","56","58","64"]],["63 : 9 = ?","7",["6","7","8","9","10"]],["125 + 275 = ?","400",["300","350","400","450","500"]],["6 × 9 = ?","54",["45","48","54","56","63"]],["72 : 8 = ?","9",["7","8","9","10","11"]]]],
-["Phân số và hình học","Nhận biết phân số, chu vi và hình.",[
-["Một nửa viết là phân số nào?","1/2",["1/3","1/2","2/3","2/5","3/4"]],["Hình vuông cạnh 5 cm có chu vi?","20 cm",["10 cm","15 cm","20 cm","25 cm","30 cm"]],["1/4 của 20 bằng?","5",["4","5","6","8","10"]],["Hình chữ nhật dài 6 cm, rộng 2 cm có chu vi?","16 cm",["8 cm","12 cm","16 cm","18 cm","20 cm"]],["Phân số nào chỉ một phần trong ba phần bằng nhau?","1/3",["1/2","1/3","2/3","3/1","3/2"]]]],
-4:[
-["Số tự nhiên và phép tính","Tính toán với số tự nhiên.",[
-["2345 + 1200 = ?","3545",["3445","3545","3645","3500","3555"]],["6000 - 2750 = ?","3250",["3150","3250","3350","4250","2750"]],["125 × 4 = ?","500",["400","450","500","525","600"]],["840 : 7 = ?","120",["12","110","120","130","140"]],["Làm tròn 4 678 đến hàng trăm được?","4 700",["4 600","4 670","4 700","4 680","5 000"]]]],
-["Phân số và đo lường","Phân số, diện tích và đổi đơn vị.",[
-["1/4 + 2/4 = ?","3/4",["3/4","3/8","2/4","1/2","1/4"]],["3/5 của 20 bằng?","12",["8","10","12","15","18"]],["Hình chữ nhật dài 8 cm, rộng 3 cm có diện tích?","24 cm²",["11 cm²","16 cm²","22 cm²","24 cm²","30 cm²"]],["1 km bằng bao nhiêu mét?","1000",["10","100","500","1000","10000"]],["Mẫu số của phân số 5/9 là?","9",["5","9","14","4","1"]]]],
-5:[
-["Số thập phân","Đọc và tính số thập phân.",[
-["1,5 + 2,3 = ?","3,8",["3,5","3,8","4,8","2,8","3,6"]],["7,2 - 1,7 = ?","5,5",["5,3","5,5","5,7","6,5","4,5"]],["0,4 × 10 = ?","4",["0,04","0,4","4","40","400"]],["3,6 : 2 = ?","1,8",["1,2","1,6","1,8","2,8","7,2"]],["Chữ số 7 trong 2,75 ở hàng nào?","Phần trăm",["Đơn vị","Phần mười","Phần trăm","Chục","Phần nghìn"]]]],
-["Phần trăm và hình học","Tính phần trăm, diện tích và thể tích.",[
-["25% của 200 là?","50",["25","40","50","75","100"]],["Diện tích tam giác đáy 8 cm, cao 5 cm?","20 cm²",["13 cm²","20 cm²","40 cm²","26 cm²","10 cm²"]],["Thể tích hộp dài 4, rộng 3, cao 2?","24",["9","12","18","24","36"]],["50% viết dưới dạng phân số tối giản là?","1/2",["1/4","1/2","2/3","3/4","5/10"]],["Chu vi hình vuông cạnh 7 cm?","28 cm",["14 cm","21 cm","28 cm","49 cm","35 cm"]]]],
-6:[
-["Số nguyên và phân số","Tính với số nguyên, phân số và số hữu tỉ.",[
-["−3 + 8 = ?","5",["−11","−5","3","5","11"]],["−4 − 6 = ?","−10",["−2","−10","2","10","−24"]],["1/2 + 1/3 = ?","5/6",["2/5","5/6","1/6","2/6","3/5"]],["Giá trị tuyệt đối của −7 là?","7",["−7","0","1","7","14"]],["Số đối của −12 là?","12",["−12","0","1","12","24"]]]],
-["Hình học và dữ liệu","Góc, tam giác và thống kê cơ bản.",[
-["Tổng ba góc trong tam giác bằng?","180°",["90°","180°","270°","360°","100°"]],["Góc vuông có số đo?","90°",["45°","60°","90°","120°","180°"]],["Hình chữ nhật có bao nhiêu trục đối xứng?","2",["0","1","2","3","4"]],["Trung bình cộng của 2, 4, 6 là?","4",["2","3","4","5","6"]],["Số nguyên nào nằm giữa −2 và 0?","−1",["−3","−2","−1","0","1"]]]],
-7:[
-["Số hữu tỉ và đại số","Phân số, lũy thừa và biểu thức.",[
-["1/2 + 1/3 = ?","5/6",["2/5","5/6","1/6","3/5","2/6"]],["Nếu x=3, 2x+1 bằng?","7",["5","6","7","8","9"]],["3² bằng?","9",["6","8","9","12","27"]],["−2 × 5 = ?","−10",["−10","−7","7","10","−25"]],["Rút gọn 6/8 được?","3/4",["2/3","3/4","4/6","6/4","1/4"]]]],
-["Tỉ lệ và hình học","Tỉ lệ thức, góc và tam giác.",[
-["Hai góc đối đỉnh thì?","Bằng nhau",["Bù nhau","Phụ nhau","Bằng nhau","Luôn vuông","Luôn nhọn"]],["Tổng ba góc tam giác bằng?","180°",["90°","180°","270°","360°","100°"]],["Tỉ lệ x/4=3/2, x bằng?","6",["4","5","6","7","8"]],["Góc bù với góc 65° là?","115°",["25°","65°","105°","115°","125°"]],["Đơn thức 3x² có hệ số là?","3",["x","2","3","x²","6"]]]],
-8:[
-["Đại số và phương trình","Phương trình, đa thức và hằng đẳng thức.",[
-["2x + 4 = 10. x = ?","3",["2","3","4","5","7"]],["(a+b)² bằng?","a²+2ab+b²",["a²+b²","a²+2ab+b²","a²−2ab+b²","2a+2b","a²−b²"]],["Phân tích x²−9 thành nhân tử?","(x−3)(x+3)",["(x−9)(x+1)","(x−3)(x+3)","(x−3)²","x(x−9)","(x+9)(x−1)"]],["3x−5=7. x bằng?","4",["2","3","4","5","6"]],["Rút gọn 2x+3x−x được?","4x",["3x","4x","5x","6x","x"]]]],
-["Hình học và Pythagore","Tam giác vuông, tứ giác và diện tích.",[
-["Cạnh góc vuông 3 và 4. Cạnh huyền?","5",["5","6","7","8","9"]],["Tổng góc trong tứ giác bằng?","360°",["180°","270°","360°","450°","90°"]],["Hình bình hành có hai cặp cạnh đối?","Song song và bằng nhau",["Vuông góc","Song song và bằng nhau","Chỉ bằng nhau","Chỉ song song","Không liên hệ"]],["Diện tích hình thang đáy 4, 8, cao 3 là?","18",["12","16","18","24","36"]],["Định lý Pythagore áp dụng cho?","Tam giác vuông",["Mọi tam giác","Tam giác vuông","Hình tròn","Hình thang","Hình bình hành"]]]],
-9:[
-["Hàm số và hệ phương trình","Hàm số bậc nhất, hệ phương trình.",[
-["x+y=5, x−y=1. x bằng?","3",["1","2","3","4","5"]],["Đồ thị y=x² có dạng?","Parabol",["Đường thẳng","Parabol","Đường tròn","Elip","Hyperbol"]],["2x−6=0. x bằng?","3",["−3","0","2","3","6"]],["Hàm số y=2x+1 có hệ số góc?","2",["1","2","−1","0","3"]],["Nghiệm của x²=16 là?","x=±4",["x=4 בלבד","x=−4 בלבד","x=±4","x=8","x=16"]]]],
-["Đường tròn và xác suất","Hình tròn, căn thức và xác suất cơ bản.",[
-["Đường kính bằng mấy lần bán kính?","2",["1","2","3","4","π"]],["√81 bằng?","9",["7","8","9","18","27"]],["Tổng hai góc nhọn trong tam giác vuông?","90°",["45°","60°","90°","180°","360°"]],["Đồng xu cân đối: xác suất mặt ngửa?","1/2",["0","1/4","1/2","3/4","1"]],["Đường tròn bán kính 3 có đường kính?","6",["3","6","9","12","3π"]]]],
-10:[
-["Hàm số và vectơ","Hàm số bậc nhất, bậc hai và vectơ.",[
-["y=2x+1 là hàm số nào?","Bậc nhất",["Bậc nhất","Bậc hai","Hằng số","Mũ","Lượng giác"]],["Vectơ đối của vectơ a là?","−a",["a","−a","0","2a","a²"]],["Δ của ax²+bx+c được tính bằng?","b²−4ac",["b²+4ac","b²−4ac","a²−4bc","4ac−b","a+b+c"]],["Đỉnh parabol y=x² nằm tại?","(0;0)",["(1;1)","(0;0)","(0;1)","(−1;0)","(1;0)"]],["Nếu f(x)=3x, f(2) bằng?","6",["3","5","6","8","9"]]]],
-["Tổ hợp và xác suất","Quy tắc đếm và xác suất.",[
-["Đồng xu cân đối có xác suất ngửa?","1/2",["0","1/4","1/2","3/4","1"]],["Có 3 áo và 2 quần, số bộ khác nhau?","6",["5","6","8","9","12"]],["5! bằng?","120",["25","60","100","120","720"]],["Xác suất của biến cố chắc chắn bằng?","1",["0","1/4","1/2","3/4","1"]],["Tổ hợp chập 2 của 4 phần tử bằng?","6",["4","5","6","8","12"]]]],
-11:[
-["Lượng giác và dãy số","Giá trị lượng giác, cấp số cộng và cấp số nhân.",[
-["sin 30° bằng?","1/2",["0","1/2","√2/2","√3/2","1"]],["Dãy 2, 5, 8,... có công sai?","3",["2","3","5","6","8"]],["cos 60° bằng?","1/2",["0","1/2","√2/2","√3/2","1"]],["Cấp số cộng có u₁=4, d=3. u₃ bằng?","10",["7","8","10","11","12"]],["sin²x + cos²x bằng?","1",["0","1/2","1","2","sin x"]]]],
-["Giới hạn, đạo hàm và hình học","Kiến thức nền về giới hạn, đạo hàm và không gian.",[
-["Đạo hàm của x² là?","2x",["x","2x","x²","2","x³"]],["Đạo hàm của hằng số 5 là?","0",["0","1","5","x","5x"]],["Hai đường thẳng vuông góc có góc giữa chúng?","90°",["0°","45°","60°","90°","180°"]],["Cấp số nhân có u₁=2, q=3. u₃ bằng?","18",["6","12","18","24","54"]],["Đạo hàm của 3x là?","3",["0","1","3","3x","x²"]]]],
-12:[
-["Đạo hàm và nguyên hàm","Đạo hàm, nguyên hàm và ứng dụng.",[
-["Đạo hàm của 3x² là?","6x",["3x","6x","6","x²","3x²"]],["Một nguyên hàm của 2x là?","x²",["2","x","x²","2x²","x³"]],["Đạo hàm của sin x là?","cos x",["−cos x","cos x","sin x","−sin x","1"]],["∫ 1 dx bằng?","x+C",["1+C","x+C","x²+C","ln x+C","0"]],["Đạo hàm của eˣ là?","eˣ",["xeˣ","eˣ","ln x","1/x","0"]]]],
-["Số phức và xác suất","Số phức, hình học không gian và xác suất.",[
-["i² bằng?","−1",["1","−1","i","−i","0"]],["Môđun của số phức 3+4i là?","5",["3","4","5","7","25"]],["Thể tích khối lập phương cạnh a là?","a³",["a²","4a","6a²","a³","3a"]],["∫ 2x dx bằng?","x²+C",["2+C","x+C","x²+C","2x²+C","x³+C"]],["Nếu A, B độc lập thì P(A∩B) bằng?","P(A)P(B)",["P(A)+P(B)","P(A)P(B)","P(A)/P(B)","P(A)-P(B)","1"]]]]
-};
-var desc={1:"Làm quen với số và phép tính.",2:"Củng cố phép tính và bảng nhân.",3:"Rèn kỹ năng tính toán.",4:"Khám phá phân số và bài toán thực tế.",5:"Số thập phân và phần trăm.",6:"Số nguyên và hình học.",7:"Số hữu tỉ và biểu thức đại số.",8:"Phương trình và hình học.",9:"Ôn tập nền tảng chuyển cấp.",10:"Hàm số và xác suất.",11:"Lượng giác và dãy số.",12:"Ôn tập chuẩn bị kỳ thi tốt nghiệp."};
-var icons=["🔢","➕","✖️","📏","📐","🧩","📊","📈","📘","🧮","📉","🎓"],progress=JSON.parse(localStorage.getItem("mathProgress")||"{}"),points=Number(localStorage.getItem("mathPoints")||0);
-function save(){localStorage.setItem("mathProgress",JSON.stringify(progress));localStorage.setItem("mathPoints",points);stats()}
-function stats(){document.getElementById("doneStat").textContent=Object.values(progress).filter(Boolean).length+" bài hoàn thành";document.getElementById("pointsHero").textContent=points+" điểm"}
-function render(){var q=document.getElementById("search").value.toLowerCase().trim(),grid=document.getElementById("grid"),n=0;grid.innerHTML="";for(var g=1;g<=12;g++){if(q&&("lớp "+g+" khối "+g+" toán "+g+" "+desc[g]).toLowerCase().indexOf(q)<0)continue;n++;var done=data[g].filter(function(t,i){return progress[g+"-"+i]}).length,card=document.createElement("article");card.className="card";card.innerHTML='<div class="cardtop"><span class="icon">'+icons[g-1]+'</span> <small>KHỐI '+String(g).padStart(2,"0")+'</small></div><h3>Toán lớp '+g+'</h3><p>'+desc[g]+'</p><button onclick="openGrade('+g+')">Học ngay → ('+done+'/'+data[g].length+')</button><div class="bar"><span style="width:'+(done/data[g].length*100)+'%"></span></div>';grid.appendChild(card)}document.getElementById("empty").style.display=n?"none":"block"}
-function openGrade(g){var b=document.getElementById("modalBody");b.innerHTML="<h2>📚 Toán lớp "+g+"</h2><p>"+desc[g]+"</p><p>Mỗi chủ đề gồm 5 câu hỏi trắc nghiệm.</p>";data[g].forEach(function(t,i){var done=progress[g+"-"+i]? "✅ Đã hoàn thành":"5 câu hỏi";var d=document.createElement("article");d.className="lesson";d.innerHTML="<h3>"+(i+1)+". "+t[0]+"</h3><p>"+t[1]+"</p><button onclick='lesson("+g+","+i+")'>Làm bài · "+done+" →</button>";b.appendChild(d)});document.getElementById("backdrop").classList.add("show")}
-function lesson(g,i){var t=data[g][i],b=document.getElementById("modalBody");var html="<button onclick='openGrade("+g+")'>← Danh sách chủ đề</button><h2>"+t[0]+"</h2><p>"+t[1]+"</p><p><b>Bài luyện tập gồm 5 câu. Mỗi câu đúng được 2 điểm.</b></p><div id='quizQuestions'>";t[2].forEach(function(q,j){html+="<article class='lesson'><h3>Câu "+(j+1)+"/5: "+q[0]+"</h3><div>"+q[2].map(function(a){return '<button class="answer" data-grade="'+g+'" data-topic="'+i+'" data-q="'+j+'" onclick="chooseAnswer(this)">'+a+'</button>'}).join("")+"</div><div class='feedback' id='fb-"+j+"'></div></article>"});html+="</div><button class='btn' onclick='submitQuiz("+g+","+i+")'>Nộp bài và xem điểm</button><div class='feedback' id='quizResult'></div>";b.innerHTML=html;window.quizAnswers={}}
-function chooseAnswer(btn){var key=btn.dataset.grade+"-"+btn.dataset.topic+"-"+btn.dataset.q;window.quizAnswers=window.quizAnswers||{};window.quizAnswers[key]=btn.textContent;var group=btn.parentElement.querySelectorAll("button");group.forEach(function(x){x.style.background="white";x.style.borderColor="#e7eaf2"});btn.style.background="#eeedff";btn.style.borderColor="#5145e5"}
-function submitQuiz(g,i){var t=data[g][i],score=0,answered=0;for(var j=0;j<t[2].length;j++){var key=g+"-"+i+"-"+j,ans=window.quizAnswers&&window.quizAnswers[key],q=t[2][j],fb=document.getElementById("fb-"+j);if(ans)answered++;if(ans===q[1]){score+=2;fb.textContent="✓ Chính xác";fb.style.color="#0f9f6e"}else{fb.textContent="Đáp án: "+q[1];fb.style.color="#d9485f"}}var result=document.getElementById("quizResult");if(answered<5){result.style.color="#d97706";result.textContent="Bạn đã trả lời "+answered+"/5 câu. Điểm hiện tại: "+score+"/10. Bạn có thể chọn đáp án còn thiếu rồi nộp lại.";return}result.style.color="#5145e5";result.textContent="🎉 Kết quả: "+score+"/10 điểm!";var key2=g+"-"+i;if(!progress[key2]){progress[key2]=true;save()}var award="mathQuizAward-"+g+"-"+i;if(!sessionStorage.getItem(award)){points+=score;sessionStorage.setItem(award,"1");save()}render()}
-function quickQuiz(){openGrade(8);lesson(8,0)}function closeModal(){document.getElementById("backdrop").classList.remove("show")}document.getElementById("search").addEventListener("input",render);document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});render();stats();
-</script>
-<script>
-/* Bản khôi phục độc lập: luôn hiển thị đủ 12 lớp ngay cả khi script bài tập gặp lỗi. */
 (function(){
- var items=[
- ["🔢","Làm quen với số và phép tính"],["➕","Cộng, trừ và bảng nhân"],["✖️","Nhân chia và phân số"],["📏","Số tự nhiên và đo lường"],
- ["📐","Số thập phân và phần trăm"],["🧩","Số nguyên và hình học"],["📊","Số hữu tỉ và đại số"],["📈","Phương trình và hình học"],
- ["📘","Hàm số và hệ phương trình"],["🧮","Hàm số và xác suất"],["📉","Lượng giác và dãy số"],["🎓","Ôn tập Toán lớp 12"]
- ];
- function showCards(){
-  var grid=document.getElementById("grid"); if(!grid)return;
-  if(grid.children.length===12)return;
-  grid.innerHTML="";
-  items.forEach(function(it,index){
-   var g=index+1, card=document.createElement("article"); card.className="card";
-   card.innerHTML='<div class="cardtop"><span class="icon">'+it[0]+'</span> <small>KHỐI '+String(g).padStart(2,"0")+'</small></div><h3>Toán lớp '+g+'</h3><p>'+it[1]+'</p><button type="button">Mở lớp '+g+' →</button>';
-   card.querySelector("button").addEventListener("click",function(){
-    var back=document.getElementById("backdrop"),body=document.getElementById("modalBody");
-    if(body&&back){body.innerHTML='<h2>'+it[0]+' Toán lớp '+g+'</h2><p>'+it[1]+'</p><p>Đã khôi phục thẻ lớp học. Nếu phần bài tập chưa mở được, cần sửa tiếp lỗi JavaScript trong bộ câu hỏi.</p>';back.classList.add("show");}
-   });
-   grid.appendChild(card);
-  });
-  var empty=document.getElementById("empty");if(empty)empty.style.display="none";
- }
- if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",showCards);else showCards();
+var topics=[["Số và phép tính","Hình học cơ bản"],["Cộng trừ, nhân chia","Hình học và đo lường"],["Nhân chia, giải toán","Phân số và hình học"],["Số tự nhiên và phép tính","Phân số và đo lường"],["Số thập phân","Phần trăm và hình học"],["Số nguyên và phân số","Hình học và dữ liệu"],["Số hữu tỉ và đại số","Tỉ lệ và hình học"],["Phương trình và đa thức","Tứ giác và Pythagore"],["Hàm số và hệ phương trình","Đường tròn và xác suất"],["Hàm số và vectơ","Tổ hợp và xác suất"],["Lượng giác và dãy số","Giới hạn và hình học"],["Đạo hàm và tích phân","Số phức và hình học"]];
+var icons=["🔢","➕","✖️","📏","📐","🧩","📊","📈","📘","🧮","📉","🎓"];
+function show(){
+var grid=document.getElementById("grid");if(!grid)return;grid.innerHTML="";
+topics.forEach(function(t,i){var g=i+1,card=document.createElement("article");card.className="card";
+card.innerHTML='<div class="cardtop"><span class="icon">'+icons[i]+'</span> <small>KHỐI '+String(g).padStart(2,"0")+'</small></div><h3>Toán lớp '+g+'</h3><p>'+t[0]+'</p><button type="button">Học ngay →</button><div class="bar"><span style="width:0%"></span></div>';
+card.querySelector("button").onclick=function(){var back=document.getElementById("backdrop"),body=document.getElementById("modalBody");if(!back||!body)return;
+body.innerHTML='<h2>'+icons[i]+' Toán lớp '+g+'</h2><p>Nội dung theo các mạch kiến thức của Chương trình giáo dục phổ thông môn Toán.</p>';
+t.forEach(function(topic,j){var item=document.createElement("article");item.className="lesson";item.innerHTML='<h3>'+(j+1)+'. '+topic+'</h3><p>Ôn tập kiến thức trọng tâm và luyện tập theo chủ đề.</p><button type="button">Bắt đầu học →</button>';item.querySelector("button").onclick=function(){body.innerHTML='<button type="button" id="backTopics">← Quay lại chủ đề</button><h2>'+topic+'</h2><p>Chủ đề Toán lớp '+g+'. Hãy xem lại lý thuyết và thực hành các dạng bài phù hợp với lớp mình.</p><article class="lesson"><h3>Câu hỏi khởi động</h3><p>'+(g===1?"2 + 3 = ?":g===5?"25% của 200 bằng bao nhiêu?":g===12?"Đạo hàm của 3x² là?":"Em hãy nêu kiến thức quan trọng của chủ đề "+topic+".")+'</p><p class="feedback">Tiếp tục bổ sung bài tập theo từng bài học.</p></article>';document.getElementById("backTopics").onclick=function(){showGrade(g);};};body.appendChild(item);});back.classList.add("show");};
+grid.appendChild(card);});
+var empty=document.getElementById("empty");if(empty)empty.style.display="none";
+}
+function showGrade(g){var cards=document.querySelectorAll("#grid .card");if(cards[g-1])cards[g-1].querySelector("button").click();}
+window.openGrade=function(g){showGrade(g);};
+window.closeModal=function(){var b=document.getElementById("backdrop");if(b)b.classList.remove("show");};
+function init(){show();var search=document.getElementById("search");if(search)search.oninput=function(){var q=this.value.toLocaleLowerCase("vi");document.querySelectorAll("#grid .card").forEach(function(c){c.style.display=c.textContent.toLocaleLowerCase("vi").includes(q)?"":"none";});};}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();
 </script>
 <div class="backdrop" id="authBackdrop" onclick="if(event.target===this)closeAuth()"><div class="modal">
